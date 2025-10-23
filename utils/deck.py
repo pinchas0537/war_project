@@ -42,4 +42,3 @@ def shuffle(deck:list[dict]) -> list[dict]:
             all_tickets[index2] = temp
             mix_cards.append(all_tickets)
     return mix_cards
-print(shuffle(create_deck()))
