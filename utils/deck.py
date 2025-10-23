@@ -3,9 +3,9 @@ import random
 def create_card(rank:str,suite:str) -> dict:
     cards_value = {"2":2,"3":3,"4":4,"5":5,"6":6,"7":7,"8":8,"9":9,"10":10,"J":11,"Q":12,"K":13,"A":14}
     cards_rank_and_suita = {"rank": rank ,"suita": suite}
-    result = cards_rank_and_suita["value"] = cards_value[rank]
+    cards_rank_and_suita["value"] = cards_value[rank]
     return cards_rank_and_suita
-    
+
 def compare_cards(p1_card:dict, p2_card:dict) -> str:
     if p1_card["value"] > p2_card["value"]:
         return "p1"
@@ -27,18 +27,14 @@ def create_deck() -> list[dict]:
 
 
 def shuffle(deck:list[dict]) -> list[dict]:
-    mix_cards=[]
-    for i in range(1000):
-        all_tickets = create_deck()
-        index1 = random.randint(1,53)
-        index2 = random.randint(1,53)
+    for _ in range(1000):
+        index1 = random.randint(0,51)
+        index2 = random.randint(0,51)
+        while index1 == index2:
+            index2 = random.randint(0,51)
+            
+        temp = deck[index1]
+        deck[index1] = deck[index2]
+        deck[index2] = temp
         
-        if index1 == index2:
-            continue
-        
-        if all_tickets[index1] == index2  and all_tickets[index2] == index1:
-            temp = all_tickets[index1]
-            all_tickets[index1] = all_tickets[index2]
-            all_tickets[index2] = temp
-            mix_cards.append(all_tickets)
-    return mix_cards
+    return deck
